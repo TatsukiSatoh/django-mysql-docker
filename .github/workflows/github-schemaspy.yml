@@ -10,6 +10,16 @@ jobs:
           run: |
             docker-compose up -d
             ls -a
+        - name: migrate
+          shell: bash
+          run: |
+            docker exec -t test-django python manage.py migrate
+            sleep 60s
+        - name: compose-schemaspy
+          shell: bash
+          run: |
+            docker-compose up -d schemaspy 
+            sleep 120s
         - name: file-check
           shell: bash
           run: |
