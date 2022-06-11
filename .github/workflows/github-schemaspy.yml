@@ -44,7 +44,19 @@ jobs:
         - uses: montudor/action-zip@v0.1.1
           with:
             args: zip -qq -r schemaspy/output.zip schemaspy/output
+          shell: bash
+          run: |
+            docker-compose -f docker-compose.yml up --build schemaspy
+            sleep 60s
         - name: file-check-4
           shell: bash
           run: |
             ls -a schemaspy/
+            - name: Upload to slack
+        - uses: adrey/slack-file-upload-action@master
+          with:
+            token: xoxe.xoxp-1-Mi0yLTE4ODIwMDkwOTU3MzAtMTg5NDYyMjMwMTc3Ny0zNjUyNjI3Nzc2MzQxLTM2NTU1Mzg2MzM0MTAtYmQzMDdjMDdhNTVkNDE3NzI0NzIzMWQwNTQxZDQxNDI0YmJiOTUwNDA2ODZlMTNlOTIwOWUzMzM4MmFlMWUyNQ
+            path: schemaspy/output.zip
+            channel: github-actions-test
+
+            
