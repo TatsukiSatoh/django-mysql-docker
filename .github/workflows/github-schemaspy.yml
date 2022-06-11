@@ -8,6 +8,8 @@ jobs:
         - name: file-check-init
           shell: bash
           run: |
+            sudo mkdir -p schemaspy
+            sudo chmod 777 schemaspy
             ls
         - name: compose-run
           shell: bash
@@ -22,8 +24,6 @@ jobs:
         - name: compose-schemaspy
           shell: bash
           run: |
-            sudo mkdir -p schema
-            sudo chmod 777 schema
             docker-compose -f docker-compose.yml up --build schemaspy
             sleep 60s
         - name: file-check-1
