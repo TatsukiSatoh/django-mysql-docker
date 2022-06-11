@@ -9,3 +9,4 @@ jobs:
           shell: bash
           run: |
             docker-compose up -d
+            ls -a
