@@ -41,3 +41,10 @@ jobs:
           shell: bash
           run: |
             ls -a schemaspy/output/
+        - uses: montudor/action-zip@v0.1.1
+          with:
+            args: zip -qq -r schemaspy/output.zip schemaspy/output
+        - name: file-check-4
+          shell: bash
+          run: |
+            ls -a schemaspy/
