@@ -22,16 +22,20 @@ jobs:
         - name: compose-schemaspy
           shell: bash
           run: |
-            mkdir -p schema
-            chmod 777 schema
+            sudo mkdir -p schema
+            sudo chmod 777 schema
             docker-compose -f docker-compose.yml up --build schemaspy
             sleep 60s
-        - name: file-check
+        - name: file-check-1
+        shell: bash
+        run: |
+            ls -a
+        - name: file-check-2
           shell: bash
           run: |
             ls -a schemaspy/
             ls -a schemaspy/output/
-        - name: file-check-2
+        - name: file-check-3
           shell: bash
           run: |
             ls -a schemaspy/output/
