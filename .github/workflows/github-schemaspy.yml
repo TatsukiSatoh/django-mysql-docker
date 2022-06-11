@@ -13,5 +13,5 @@ jobs:
         - name: file-check
           shell: bash
           run: |
-            ls -a /schemaspy/
-            ls -a /schemaspy/output
+            ls -a schemaspy/
+            ls -a schemaspy/output
