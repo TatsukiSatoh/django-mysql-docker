@@ -9,7 +9,9 @@ jobs:
           shell: bash
           run: |
             sudo mkdir -p schemaspy
+            sudo mkdir -p schemaspy/output
             sudo chmod 777 schemaspy
+            sudo chmod 777 schemaspy/output
             ls
         - name: compose-run
           shell: bash
