@@ -9,7 +9,7 @@ jobs:
           shell: bash
           run: |
             docker-compose up -d
-            ls -a
+            sleep 60s
         - name: migrate
           shell: bash
           run: |
