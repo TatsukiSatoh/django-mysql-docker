@@ -5,6 +5,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
         - uses: actions/checkout@v2
+        - name: file-check-init
+          shell: bash
+          run: |
+            ls
         - name: compose-run
           shell: bash
           run: |
@@ -18,8 +22,8 @@ jobs:
         - name: compose-schemaspy
           shell: bash
           run: |
-            docker-compose up -d schemaspy 
-            sleep 120s
+            docker-compose -f docker-compose.yml up --build schemaspy
+            sleep 60s
         - name: file-check
           shell: bash
           run: |
