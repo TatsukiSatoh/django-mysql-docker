@@ -10,3 +10,8 @@ jobs:
           run: |
             docker-compose up -d
             ls -a
+        - name: file-check
+          shell: bash
+          run: |
+            ls -a /schemaspy/
+            ls -a /schemaspy/output
