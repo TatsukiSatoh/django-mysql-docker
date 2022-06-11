@@ -6,6 +6,6 @@ jobs:
     steps:
         - uses: actions/checkout@v2
         - name: compose-run
-        shell: bash
-        run: |
-          docker-compose up -d
+            shell: bash
+            run: |
+                docker-compose up -d
