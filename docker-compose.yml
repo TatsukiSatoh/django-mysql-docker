@@ -5,15 +5,16 @@ services:
     image: mysql:5.7
     container_name: test-mysql
     environment:
-      MYSQL_HOST: 'mysqlhost'
+      MYSQL_HOST: mysqlhost
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_USER: 'django'
-      MYSQL_PASSWORD: 'django'
-      MYSQL_DATABASE: 'django'
+      MYSQL_USER: django
+      MYSQL_PASSWORD: django
+      MYSQL_DATABASE: django
     ports:
       - 3307:3306
     volumes:
       - mysql:/var/lib/mysql
+    tty: true
   web:
     container_name: test-django
     build: .
@@ -24,28 +25,28 @@ services:
       - "8000:8000"
     links:
       - db
-  schemaspy:
-    container_name: schemaspy
-    image: schemaspy/schemaspy:6.1.0
-    volumes:
-      - ./schemaspy/output:/output
-      - ./schemaspy/meta:/meta
-    # image: schemaspy/schemaspy:snapshot
-    # tty: true
+  # schemaspy:
+    # container_name: schemaspy
+    # image: schemaspy/schemaspy:6.1.0
     # volumes:
-    #   - ./.dev/schemaspy/output:/output
-    depends_on:
-      - db
-    command: >
-      java -jar schemaspy.jar
-      -t mysql
-      -host db
-      -port 3306
-      -db django
-      -u django
-      -p django
-      -s django
-      -connprops useSSL\\=false
+    #   - ./schemaspy/output:/output
+    #   - ./schemaspy/meta:/meta
+    # # image: schemaspy/schemaspy:snapshot
+    # # tty: true
+    # # volumes:
+    # #   - ./.dev/schemaspy/output:/output
+    # depends_on:
+    #   - db
+    # command: >
+    #   java -jar schemaspy.jar
+    #   -t mysql
+    #   -host db
+    #   -port 3306
+    #   -db django
+    #   -u django
+    #   -p django
+    #   -s django
+    #   -connprops useSSL\\=false
 
 volumes:
   mysql:

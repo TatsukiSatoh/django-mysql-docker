@@ -26,7 +26,7 @@ jobs:
         - name: compose-schemaspy
           shell: bash
           run: |
-            docker-compose -f docker-compose.yml up --build schemaspy
+          docker run --rm --net=host -v $PWD/output:/output -v $PWD/schemaspy.properties:/schemaspy.properties schemaspy/schemaspy:snapshot
             sleep 60s
         - name: file-check-1
           shell: bash
@@ -35,15 +35,10 @@ jobs:
         - name: file-check-2
           shell: bash
           run: |
-            ls -a schemaspy/
-            ls -a schemaspy/output/
-        - name: file-check-3
-          shell: bash
-          run: |
-            ls -a schemaspy/output/
+            ls -a output/
         - uses: montudor/action-zip@v0.1.1
           with:
-            args: zip -qq -r schemaspy/output.zip schemaspy/output
+            args: zip -qq -r output.zip output
         - name: file-check-4
           shell: bash
           run: |
@@ -52,5 +47,5 @@ jobs:
           uses: adrey/slack-file-upload-action@master
           with:
             token: ${{ secrets.SLACK_TOKEN }}
-            path: schemaspy/output.zip
+            path: output.zip
             channel: github-actions-test
