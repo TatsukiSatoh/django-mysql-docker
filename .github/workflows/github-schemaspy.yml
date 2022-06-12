@@ -51,6 +51,6 @@ jobs:
         - name: Upload to slack
           uses: adrey/slack-file-upload-action@master
           with:
-            token: xoxe.xoxp-1-Mi0yLTE4ODIwMDkwOTU3MzAtMTg5NDYyMjMwMTc3Ny0zNjUyNjI3Nzc2MzQxLTM2NTU1Mzg2MzM0MTAtYmQzMDdjMDdhNTVkNDE3NzI0NzIzMWQwNTQxZDQxNDI0YmJiOTUwNDA2ODZlMTNlOTIwOWUzMzM4MmFlMWUyNQ
+            token: ${{ secrets.SLACK_TOKEN }}
             path: schemaspy/output.zip
             channel: github-actions-test
